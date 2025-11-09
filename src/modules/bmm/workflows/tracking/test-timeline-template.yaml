@@ -1,60 +1,61 @@
 # Test Timeline Tracking Template
 # Tracks test suite timeline with ISO 8601 dates
 # Generated: {{date}}
+# eslint-disable yml/no-empty-mapping-value
 
 test_suite_info:
   name: "{{test_suite_name}}"
-  type: "{{test_type}}"                       # unit, integration, e2e, contract, performance
+  type: "{{test_type}}" # unit, integration, e2e, contract, performance
   story_id: "{{story_id}}"
   epic_id: "{{epic_id}}"
-  framework: "{{test_framework}}"             # vitest, jest, playwright, cypress
+  framework: "{{test_framework}}" # vitest, jest, playwright, cypress
 
 timeline:
-  test_design_start: "{{design_start}}"       # ISO 8601: 2025-11-09T10:00:00-03:00
-  test_design_finish: "{{design_finish}}"     # ISO 8601: 2025-11-09T12:30:00-03:00
+  test_design_start: "{{design_start}}" # ISO 8601: 2025-11-09T10:00:00-03:00
+  test_design_finish: "{{design_finish}}" # ISO 8601: 2025-11-09T12:30:00-03:00
   test_implementation_start: "{{impl_start}}" # ISO 8601: 2025-11-09T14:00:00-03:00
   test_implementation_finish: "{{impl_finish}}" # ISO 8601: 2025-11-09T17:30:00-03:00
-  first_execution: "{{first_exec}}"           # ISO 8601: first time tests ran
-  last_execution: "{{last_exec}}"             # ISO 8601: most recent execution
+  first_execution: "{{first_exec}}" # ISO 8601: first time tests ran
+  last_execution: "{{last_exec}}" # ISO 8601: most recent execution
 
 test_statistics:
-  total_tests: {{total_tests}}
-  passing_tests: {{passing_tests}}
-  failing_tests: {{failing_tests}}
-  skipped_tests: {{skipped_tests}}
-  total_assertions: {{total_assertions}}
+  total_tests: { { total_tests } }
+  passing_tests: { { passing_tests } }
+  failing_tests: { { failing_tests } }
+  skipped_tests: { { skipped_tests } }
+  total_assertions: { { total_assertions } }
 
 coverage:
-  last_updated: "{{coverage_date}}"           # ISO 8601
-  percentage: {{coverage_pct}}
-  lines_covered: {{lines_covered}}
-  lines_total: {{lines_total}}
-  branches_covered: {{branches_covered}}
-  branches_total: {{branches_total}}
+  last_updated: "{{coverage_date}}" # ISO 8601
+  percentage: { { coverage_pct } }
+  lines_covered: { { lines_covered } }
+  lines_total: { { lines_total } }
+  branches_covered: { { branches_covered } }
+  branches_total: { { branches_total } }
 
 execution_history:
-  - date: "{{exec_date_1}}"                   # ISO 8601
-    status: "{{exec_status_1}}"               # pass, fail, error
-    duration_seconds: {{exec_duration_1}}
-    tests_run: {{tests_run_1}}
-    tests_passed: {{tests_passed_1}}
-    tests_failed: {{tests_failed_1}}
+  - date: "{{exec_date_1}}" # ISO 8601
+    status: "{{exec_status_1}}" # pass, fail, error
+    duration_seconds: { { exec_duration_1 } }
+    tests_run: { { tests_run_1 } }
+    tests_passed: { { tests_passed_1 } }
+    tests_failed: { { tests_failed_1 } }
   - date: "{{exec_date_2}}"
     status: "{{exec_status_2}}"
-    duration_seconds: {{exec_duration_2}}
-    tests_run: {{tests_run_2}}
-    tests_passed: {{tests_passed_2}}
-    tests_failed: {{tests_failed_2}}
+    duration_seconds: { { exec_duration_2 } }
+    tests_run: { { tests_run_2 } }
+    tests_passed: { { tests_passed_2 } }
+    tests_failed: { { tests_failed_2 } }
 
 performance:
-  average_execution_time_seconds: {{avg_exec_time}}
+  average_execution_time_seconds: { { avg_exec_time } }
   slowest_test: "{{slowest_test_name}}"
-  slowest_test_duration_seconds: {{slowest_test_duration}}
+  slowest_test_duration_seconds: { { slowest_test_duration } }
 
 quality:
-  flaky_tests: {{flaky_tests_count}}
-  test_maintenance_hours: {{maintenance_hours}}
-  last_refactor: "{{last_refactor_date}}"     # ISO 8601
+  flaky_tests: { { flaky_tests_count } }
+  test_maintenance_hours: { { maintenance_hours } }
+  last_refactor: "{{last_refactor_date}}" # ISO 8601
 
 artifacts:
   test_files: "{{test_files_directory}}"
@@ -63,4 +64,3 @@ artifacts:
 
 notes: |
   {{test_notes}}
-

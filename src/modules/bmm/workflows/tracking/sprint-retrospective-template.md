@@ -47,6 +47,7 @@
 {{what_went_well}}
 
 **Specific Wins:**
+
 - {{win_1}}
 - {{win_2}}
 - {{win_3}}
@@ -58,6 +59,7 @@
 {{what_didnt_go_well}}
 
 **Pain Points:**
+
 - {{pain_1}}
 - {{pain_2}}
 - {{pain_3}}
@@ -69,6 +71,7 @@
 {{insights}}
 
 **Key Takeaways:**
+
 - {{takeaway_1}}
 - {{takeaway_2}}
 - {{takeaway_3}}
@@ -77,8 +80,8 @@
 
 ## Action Items
 
-| Action | Owner | Target Date | Status |
-|--------|-------|-------------|--------|
+| Action       | Owner       | Target Date       | Status       |
+| ------------ | ----------- | ----------------- | ------------ |
 | {{action_1}} | {{owner_1}} | {{target_date_1}} | {{status_1}} |
 | {{action_2}} | {{owner_2}} | {{target_date_2}} | {{status_2}} |
 | {{action_3}} | {{owner_3}} | {{target_date_3}} | {{status_3}} |
@@ -109,6 +112,7 @@
 **Next Sprint Goal:** {{next_sprint_goal}}
 
 **Capacity Planning:**
+
 - **Available Team Hours:** {{next_sprint_capacity}} hours
 - **Planned Velocity:** {{next_sprint_planned_velocity}} points
 - **Focus Areas:** {{next_sprint_focus}}
@@ -124,4 +128,3 @@
 **Retrospective Facilitator:** {{facilitator}}  
 **Document Created:** {{document_created_date}}  
 **Last Updated:** {{last_updated_date}}
-
