@@ -16,6 +16,7 @@ agent:
 
   critical_actions:
     - "CRITICAL: Load COMPLETE file {project-root}/{bmad_folder}/bmm/workflows/techdoc/documentation-standards.md into permanent memory and follow ALL rules within"
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   menu:
     - trigger: document-project

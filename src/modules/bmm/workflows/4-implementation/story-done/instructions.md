@@ -103,8 +103,26 @@ Story is marked Done in file, but sprint-status.yaml may be out of sync.
 2. Check epic completion status
    - Run `retrospective` workflow to check if epic is complete
    - Epic retrospective will verify all stories are done
+3. Consider generating commit message
+   - Run `suggest-commit` workflow to create Conventional Commits message
      </output>
 
+</step>
+
+<step n="3" goal="Suggest commit message" optional="true">
+  <action>Inform user that story status was updated in file</action>
+  <ask>Run suggest-commit workflow to generate Conventional Commits message? [y/n]</ask>
+  <check if="user responds yes">
+    <invoke-workflow path="{project-root}/bmad/bmm/workflows/git/suggest-commit/workflow.yaml">
+      <variable name="workflow_name">story-done</variable>
+      <variable name="start_date">{date:iso8601-local}</variable>
+      <variable name="finish_date">{date:iso8601-local}</variable>
+      <variable name="time_spent">calculated_from_workflow</variable>
+    </invoke-workflow>
+  </check>
+  <check if="user responds no">
+    <action>Remind user they can run suggest-commit later or reference: {project-root}/docs/conventional-commits-guide.md</action>
+  </check>
 </step>
 
 </workflow>

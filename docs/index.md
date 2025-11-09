@@ -36,6 +36,24 @@ Complete map of all BMad Method v6 documentation with recommended reading paths.
 
 - **[Date Format Standard](./date-format-standard.md)** - ISO 8601 with timezone (YYYY-MM-DDTHH:MM:SS±HH:MM)
 
+### Project Management & Methodology
+
+- **[Docs Structure Guide](../.docs-structure.md)** - When to use each documentation folder
+- **[Naming Conventions](./naming-conventions-guide.md)** - File, variable, and component naming standards
+- **[Version Strategy](./version-strategy.md)** - One Epic = One Minor Version
+- **[FDD/SDD Guide](./fdd-sdd-guide.md)** - Feature-Driven and Spec-Driven Development
+
+### Git & Version Control
+
+- **[Conventional Commits Guide](./conventional-commits-guide.md)** - Commit message standards and specification
+- **[Commit Message Template](../src/utility/templates/COMMIT_MESSAGE_TEMPLATE.md)** - Quick reference
+
+### Templates
+
+- **[Release Notes Template](../src/utility/templates/RELEASE_NOTES_TEMPLATE.md)** - Semantic versioning format
+- **[Commit Message Template](../src/utility/templates/COMMIT_MESSAGE_TEMPLATE.md)** - Conventional Commits
+- **[Epic Backlog Template](../src/utility/templates/EPIC_BACKLOG_TEMPLATE.md)** - Epic tracking table
+
 ---
 
 ## 🏗️ Module Documentation

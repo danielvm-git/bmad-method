@@ -1,0 +1,28 @@
+# Suggest Commit Workflow
+name: suggest-commit
+description: "Analyze git status and generate Conventional Commits-formatted commit messages with time tracking"
+author: "BMad"
+
+# Critical variables from config
+config_source: "{project-root}/bmad/bmm/config.yaml"
+output_folder: "{config_source}:output_folder"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Workflow components
+installed_path: "{project-root}/bmad/bmm/workflows/git/suggest-commit"
+instructions: "{installed_path}/instructions.md"
+
+# Variables and inputs
+variables:
+  workflow_name: "" # Name of workflow that invoked suggest-commit (for time tracking)
+  start_date: "" # Workflow start date (ISO 8601)
+  finish_date: "" # Workflow finish date (ISO 8601)
+  time_spent: "" # Human-readable duration
+
+# No template output - this is an action workflow
+template: false
+
+standalone: true
+
+web_bundle: false

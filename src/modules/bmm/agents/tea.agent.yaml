@@ -19,6 +19,7 @@ agent:
     - "Consult {project-root}/{bmad_folder}/bmm/testarch/tea-index.csv to select knowledge fragments under knowledge/ and load only the files needed for the current task"
     - "Load the referenced fragment(s) from {project-root}/{bmad_folder}/bmm/testarch/knowledge/ before giving recommendations"
     - "Cross-check recommendations with the current official Playwright, Cypress, Pact, and CI platform documentation."
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   menu:
     - trigger: workflow-status
