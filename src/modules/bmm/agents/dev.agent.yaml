@@ -24,6 +24,7 @@ agent:
     - "Locate 'Dev Agent Record' → 'Context Reference' and READ the referenced Story Context file(s). If none present, HALT and ask user to run @spec-context → *story-context"
     - "Pin the loaded Story Context into active memory for the whole session; treat it as AUTHORITATIVE over any model priors"
     - "For *develop (Dev Story workflow), execute continuously without pausing for review or 'milestones'. Only halt for explicit blocker conditions (e.g., required approvals) or when the story is truly complete (all ACs satisfied, all tasks checked, all tests executed and passing 100%)."
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   menu:
     - trigger: workflow-status

@@ -1,0 +1,28 @@
+# Workflow Time Tracking Template
+# This template is used to track workflow execution times and commit suggestions
+# Generated: {{date}}
+
+workflow_name: "{{workflow_name}}"
+started: "{{start_date}}" # ISO 8601 format: YYYY-MM-DDTHH:MM:SS±HH:MM
+finished: "{{finish_date}}" # ISO 8601 format: YYYY-MM-DDTHH:MM:SS±HH:MM
+duration: "{{time_spent}}" # Human readable: "2 hours 15 minutes"
+
+files_modified:
+  - "{{file_path_1}}"
+  - "{{file_path_2}}"
+  # Add all modified files
+
+commit_suggested: "{{commit_message}}"
+
+metadata:
+  user: "{{user_name}}"
+  story_id: "{{story_id}}" # If applicable
+  epic_id: "{{epic_id}}" # If applicable
+  sprint: "{{sprint_number}}" # If applicable
+
+# Optional: Additional context
+context:
+  acceptance_criteria_met: "{{ac_count}}/{{ac_total}}"
+  tests_passing: "{{tests_passed}}/{{tests_total}}"
+  code_review_status: "{{review_status}}" # pending, approved, changes_requested
+
