@@ -1,6 +1,7 @@
 # Project Timeline Tracking Template
 # Tracks project-level timeline with ISO 8601 dates
 # Created: {{date}}
+# eslint-disable yml/no-empty-mapping-value
 
 project_info:
   name: "{{project_name}}"
@@ -9,79 +10,76 @@ project_info:
   domain: "{{domain_type}}"
 
 timeline:
-  project_start: "{{project_start_date}}"      # ISO 8601: 2025-11-09T09:00:00-03:00
-  project_target: "{{project_target_date}}"    # ISO 8601: 2025-12-09T18:00:00-03:00
-  project_finish: null                          # Updated when complete
-  last_updated: "{{last_updated_date}}"        # ISO 8601: 2025-11-09T14:30:45Z
-  
+  project_start: "{{project_start_date}}" # ISO 8601: 2025-11-09T09:00:00-03:00
+  project_target: "{{project_target_date}}" # ISO 8601: 2025-12-09T18:00:00-03:00
+  project_finish: null # Updated when complete
+  last_updated: "{{last_updated_date}}" # ISO 8601: 2025-11-09T14:30:45Z
+
 phases:
   analysis:
-    start: "{{analysis_start}}"                 # ISO 8601
-    finish: "{{analysis_finish}}"               # ISO 8601
-    duration_hours: {{analysis_duration}}
-    status: "{{analysis_status}}"               # not-started, in-progress, completed, skipped
+    start: "{{analysis_start}}" # ISO 8601
+    finish: "{{analysis_finish}}" # ISO 8601
+    duration_hours: { { analysis_duration } }
+    status: "{{analysis_status}}" # not-started, in-progress, completed, skipped
     artifacts:
       - product_brief: "{{product_brief_path}}"
       - research: "{{research_path}}"
       - domain_research: "{{domain_research_path}}"
-    
+
   planning:
-    prd_start: "{{prd_start}}"                  # ISO 8601
-    prd_finish: "{{prd_finish}}"                # ISO 8601
-    tech_spec_start: "{{tech_spec_start}}"      # ISO 8601
-    tech_spec_finish: "{{tech_spec_finish}}"    # ISO 8601
-    ux_design_start: "{{ux_design_start}}"      # ISO 8601
-    ux_design_finish: "{{ux_design_finish}}"    # ISO 8601
-    duration_hours: {{planning_duration}}
+    prd_start: "{{prd_start}}" # ISO 8601
+    prd_finish: "{{prd_finish}}" # ISO 8601
+    tech_spec_start: "{{tech_spec_start}}" # ISO 8601
+    tech_spec_finish: "{{tech_spec_finish}}" # ISO 8601
+    ux_design_start: "{{ux_design_start}}" # ISO 8601
+    ux_design_finish: "{{ux_design_finish}}" # ISO 8601
+    duration_hours: { { planning_duration } }
     status: "{{planning_status}}"
     artifacts:
       - prd: "{{prd_path}}"
       - tech_spec: "{{tech_spec_path}}"
       - epics: "{{epics_path}}"
       - ux_design: "{{ux_design_path}}"
-    
+
   solutioning:
-    architecture_start: "{{arch_start}}"        # ISO 8601
-    architecture_finish: "{{arch_finish}}"      # ISO 8601
+    architecture_start: "{{arch_start}}" # ISO 8601
+    architecture_finish: "{{arch_finish}}" # ISO 8601
     test_strategy_start: "{{test_strategy_start}}"
     test_strategy_finish: "{{test_strategy_finish}}"
-    duration_hours: {{solutioning_duration}}
+    duration_hours: { { solutioning_duration } }
     status: "{{solutioning_status}}"
     artifacts:
       - architecture: "{{architecture_path}}"
       - test_strategy: "{{test_strategy_path}}"
-    
-  implementation:
-    dev_start: "{{dev_start}}"                  # ISO 8601
-    dev_finish: "{{dev_finish}}"                # ISO 8601
-    duration_hours: {{implementation_duration}}
-    status: "{{implementation_status}}"
-    sprints_completed: {{sprints_completed}}
-    stories_completed: {{stories_completed}}
-    total_story_points: {{total_story_points}}
 
-milestones:
-  - name: "{{milestone_1_name}}"
-    target_date: "{{milestone_1_date}}"         # ISO 8601
-    actual_date: null                           # ISO 8601 when completed
-    status: "pending"                           # pending, completed, missed
-  - name: "{{milestone_2_name}}"
-    target_date: "{{milestone_2_date}}"
-    actual_date: null
-    status: "pending"
+  implementation:
+    dev_start: "{{dev_start}}" # ISO 8601
+    dev_finish: "{{dev_finish}}" # ISO 8601
+    duration_hours: { { implementation_duration } }
+    status: "{{implementation_status}}"
+    sprints_completed: { { sprints_completed } }
+    stories_completed: { { stories_completed } }
+    total_story_points: { { total_story_points } }
+
+milestones: null
+# Example milestones structure:
+# milestones:
+#   - name: "MVP Release"
+#     target_date: "2025-12-01T18:00:00-03:00"
+#     actual_date: null
+#     status: "pending"
 
 metrics:
   velocity:
-    average_story_points_per_sprint: {{avg_velocity}}
-    average_hours_per_story_point: {{avg_hours_per_point}}
+    average_story_points_per_sprint: { { avg_velocity } }
+    average_hours_per_story_point: { { avg_hours_per_point } }
   quality:
-    test_coverage_percentage: {{test_coverage}}
-    bugs_found: {{bugs_found}}
-    bugs_resolved: {{bugs_resolved}}
+    test_coverage_percentage: "{{test_coverage}}"
+    bugs_found: "{{bugs_found}}"
+    bugs_resolved: "{{bugs_resolved}}"
   efficiency:
     planned_vs_actual_variance: "{{variance_percentage}}"
     on_time_delivery_rate: "{{on_time_rate}}"
 
 notes: |
   {{project_notes}}
-

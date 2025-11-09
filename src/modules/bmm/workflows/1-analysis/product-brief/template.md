@@ -1,8 +1,9 @@
 # Product Brief: {{project_name}}
 
-**Date:** {{date}}
+**Created:** {{date}}
 **Author:** {{user_name}}
 **Context:** {{context_type}}
+**Analysis Period:** {{analysis_start_date}} to {{analysis_end_date}}
 
 ---
 

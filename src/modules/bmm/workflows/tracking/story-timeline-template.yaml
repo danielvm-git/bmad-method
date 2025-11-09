@@ -1,86 +1,74 @@
 # Story Timeline Tracking Template
 # Tracks story-level timeline with ISO 8601 dates
 # Story: {{story_id}}
+# eslint-disable yml/no-empty-mapping-value
 
 story_info:
   id: "{{story_id}}"
   title: "{{story_title}}"
   epic: "{{epic_id}}"
   epic_title: "{{epic_title}}"
-  priority: "{{story_priority}}"              # critical, high, medium, low
-  points: {{story_points}}
+  priority: "{{story_priority}}" # critical, high, medium, low
+  points: { { story_points } }
 
 timeline:
-  created: "{{created_date}}"                 # ISO 8601: 2025-11-09T10:00:00-03:00
-  drafted: "{{drafted_date}}"                 # ISO 8601: when story file created by *create-story
-  ready: "{{ready_date}}"                     # ISO 8601: when *story-ready completed
-  dev_start: "{{dev_start_date}}"             # ISO 8601: when *dev-story started
-  dev_finish: "{{dev_finish_date}}"           # ISO 8601: when implementation done
-  review_start: "{{review_start_date}}"       # ISO 8601: when *code-review started
-  review_finish: "{{review_finish_date}}"     # ISO 8601: when review approved
-  done: "{{done_date}}"                       # ISO 8601: when *story-done completed
+  created: "{{created_date}}" # ISO 8601: 2025-11-09T10:00:00-03:00
+  drafted: "{{drafted_date}}" # ISO 8601: when story file created by *create-story
+  ready: "{{ready_date}}" # ISO 8601: when *story-ready completed
+  dev_start: "{{dev_start_date}}" # ISO 8601: when *dev-story started
+  dev_finish: "{{dev_finish_date}}" # ISO 8601: when implementation done
+  review_start: "{{review_start_date}}" # ISO 8601: when *code-review started
+  review_finish: "{{review_finish_date}}" # ISO 8601: when review approved
+  done: "{{done_date}}" # ISO 8601: when *story-done completed
 
-status: "{{story_status}}"                    # backlog, drafted, ready-for-dev, in-progress, review, done
+status: "{{story_status}}" # backlog, drafted, ready-for-dev, in-progress, review, done
 
 effort_tracking:
-  estimated_hours: {{estimated_hours}}
-  actual_hours: {{actual_hours}}
-  variance_hours: {{variance_hours}}
-  start_time: "{{actual_start}}"              # ISO 8601: actual dev start
-  finish_time: "{{actual_finish}}"            # ISO 8601: actual dev finish
-  
-workflow_history:
-  - workflow: "create-story"
-    started: "{{create_story_start}}"         # ISO 8601
-    completed: "{{create_story_finish}}"      # ISO 8601
-    duration_minutes: {{create_story_duration}}
-  - workflow: "story-ready"
-    started: "{{story_ready_start}}"
-    completed: "{{story_ready_finish}}"
-    duration_minutes: {{story_ready_duration}}
-  - workflow: "dev-story"
-    started: "{{dev_story_start}}"
-    completed: "{{dev_story_finish}}"
-    duration_minutes: {{dev_story_duration}}
-  - workflow: "code-review"
-    started: "{{code_review_start}}"
-    completed: "{{code_review_finish}}"
-    duration_minutes: {{code_review_duration}}
-  - workflow: "story-done"
-    started: "{{story_done_start}}"
-    completed: "{{story_done_finish}}"
-    duration_minutes: {{story_done_duration}}
+  estimated_hours: { { estimated_hours } }
+  actual_hours: { { actual_hours } }
+  variance_hours: { { variance_hours } }
+  start_time: "{{actual_start}}" # ISO 8601: actual dev start
+  finish_time: "{{actual_finish}}" # ISO 8601: actual dev finish
 
-blockers:
-  - date: "{{blocker_date}}"                  # ISO 8601: when blocker occurred
-    description: "{{blocker_description}}"
-    severity: "{{blocker_severity}}"          # critical, high, medium, low
-    resolved: "{{blocker_resolved_date}}"     # ISO 8601: when blocker resolved
-    resolution: "{{blocker_resolution}}"
+workflow_history: null
+# Example workflow history structure:
+# workflow_history:
+#   - workflow: "create-story"
+#     started: "2025-11-09T10:00:00-03:00"
+#     completed: "2025-11-09T10:30:00-03:00"
+#     duration_minutes: 30
+
+blockers: null
+# Example blocker structure:
+# blockers:
+#   - date: "2025-11-09T14:00:00-03:00"
+#     description: "Waiting for API endpoint"
+#     severity: "high"
+#     resolved: "2025-11-09T16:00:00-03:00"
+#     resolution: "API endpoint deployed"
 
 implementation:
-  files_modified: {{files_modified_count}}
-  lines_added: {{lines_added}}
-  lines_deleted: {{lines_deleted}}
-  commits: {{commit_count}}
-  
+  files_modified: { { files_modified_count } }
+  lines_added: { { lines_added } }
+  lines_deleted: { { lines_deleted } }
+  commits: { { commit_count } }
+
 testing:
-  unit_tests: {{unit_tests_count}}
-  integration_tests: {{integration_tests_count}}
-  e2e_tests: {{e2e_tests_count}}
+  unit_tests: { { unit_tests_count } }
+  integration_tests: { { integration_tests_count } }
+  e2e_tests: { { e2e_tests_count } }
   test_coverage: "{{test_coverage_percentage}}"
 
 quality:
-  code_review_cycles: {{review_cycles}}
-  bugs_found: {{bugs_found}}
-  bugs_fixed: {{bugs_fixed}}
-  technical_debt_items: {{tech_debt_items}}
+  code_review_cycles: { { review_cycles } }
+  bugs_found: { { bugs_found } }
+  bugs_fixed: { { bugs_fixed } }
+  technical_debt_items: { { tech_debt_items } }
 
 artifacts:
   story_file: "{{story_file_path}}"
   context_file: "{{context_file_path}}"
   test_files: "{{test_files_directory}}"
-  
+
 notes: |
   {{story_notes}}
-

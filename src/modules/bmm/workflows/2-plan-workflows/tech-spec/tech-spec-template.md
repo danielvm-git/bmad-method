@@ -1,10 +1,12 @@
 # {{project_name}} - Technical Specification
 
 **Author:** {{user_name}}
-**Date:** {{date}}
+**Created:** {{date}}
 **Project Level:** {{project_level}}
 **Change Type:** {{change_type}}
 **Development Context:** {{development_context}}
+**Start Date:** {{start_date}}
+**Target Completion:** {{target_date}}
 
 ---
 

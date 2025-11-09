@@ -106,7 +106,15 @@
           <phase n="1">Load external config from config_source path</phase>
           <phase n="2">Resolve all {config_source}: references with values from config</phase>
           <phase n="3">Resolve system variables (date:system-generated) and paths ({project-root}, {installed_path})</phase>
+          <phase n="3a">Initialize time tracking: Record workflow start_date in ISO 8601 format with timezone</phase>
           <phase n="4">Ask user for input of any variables that are still unknown</phase>
+          <date-format-standard>
+            <iso8601-utc>Format: YYYY-MM-DDTHH:MM:SSZ (e.g., 2025-11-09T17:30:45Z)</iso8601-utc>
+            <iso8601-local>Format: YYYY-MM-DDTHH:MM:SS±HH:MM (e.g., 2025-11-09T14:30:45-03:00)</iso8601-local>
+            <variable>{date:iso8601-utc} → Current time in UTC</variable>
+            <variable>{date:iso8601-local} → Current time with local timezone offset</variable>
+            <variable>{date:system-generated} → Legacy alias for {date:iso8601-local}</variable>
+          </date-format-standard>
         </substep>
   
         <substep n="1b" title="Load Required Components">
@@ -165,10 +173,25 @@
       </step>
   
       <step n="3" title="Completion">
-        <check>If checklist exists → Run validation</check>
-        <check>If template: false → Confirm actions completed</check>
-        <check>Else → Confirm document saved to output path</check>
-        <action>Report workflow completion</action>
+        <substep n="3a" title="Finalize Time Tracking">
+          <action>Record workflow finish_date in ISO 8601 format with timezone</action>
+          <action>Calculate time_spent: difference between finish_date and start_date</action>
+          <action>Format time_spent as human-readable (e.g., "2 hours 15 minutes" or "45 minutes")</action>
+          <display-format>
+            <time-tracking-summary>
+              ⏱️  Workflow Time Tracking:
+              Started:  {start_date}  (ISO 8601)
+              Finished: {finish_date} (ISO 8601)
+              Duration: {time_spent}  (human-readable)
+            </time-tracking-summary>
+          </display-format>
+        </substep>
+        <substep n="3b" title="Validation and Confirmation">
+          <check>If checklist exists → Run validation</check>
+          <check>If template: false → Confirm actions completed</check>
+          <check>Else → Confirm document saved to output path</check>
+          <action>Report workflow completion with time tracking summary</action>
+        </substep>
       </step>
     </flow>
   
@@ -1007,9 +1030,10 @@
   ]]></file>
   <file id="bmad/bmm/workflows/1-analysis/product-brief/template.md" type="md"><![CDATA[# Product Brief: {{project_name}}
   
-  **Date:** {{date}}
+  **Created:** {{date}}
   **Author:** {{user_name}}
   **Context:** {{context_type}}
+  **Analysis Period:** {{analysis_start_date}} to {{analysis_end_date}}
   
   ---
   

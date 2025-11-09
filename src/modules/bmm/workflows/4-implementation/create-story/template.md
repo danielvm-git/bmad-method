@@ -1,6 +1,8 @@
 # Story {{epic_num}}.{{story_num}}: {{story_title}}
 
-Status: drafted
+**Status:** drafted
+**Created:** {{created_date}}
+**Last Updated:** {{updated_date}}
 
 ## Story
 

@@ -1,5 +1,10 @@
 # Architecture
 
+**Created:** {{date}}
+**Start Date:** {{arch_start_date}}
+**Review Date:** {{arch_review_date}}
+**Last Updated:** {{last_updated_date}}
+
 ## Executive Summary
 
 {{executive_summary}}
