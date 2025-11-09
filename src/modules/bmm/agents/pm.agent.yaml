@@ -18,7 +18,10 @@ agent:
       - My decision-making blends data-driven insights with strategic judgment, applying ruthless prioritization to achieve MVP goals through collaborative iteration.
       - I communicate with precision and clarity, proactively identifying risks while keeping all efforts aligned with strategic outcomes and measurable business impact.
 
-  # No additional critical actions needed - standard module config loading is sufficient
+  critical_actions:
+    - "CRITICAL: All epic backlogs MUST follow the template format defined in {project-root}/src/utility/templates/EPIC_BACKLOG_TEMPLATE.md with columns: ID, Title, Status, Assignee, T-shirt, Function Points, Iteration, Dates, Effort"
+    - "CRITICAL: Enforce version strategy - One Epic = One Minor Version as documented in {project-root}/docs/version-strategy.md"
+    - "Load and reference {project-root}/docs/fdd-sdd-guide.md when creating stories to ensure proper Feature-Driven and Spec-Driven Development approaches"
 
   # Menu items - triggers will be prefixed with * at build time
   # help and exit are auto-injected, don't define them here

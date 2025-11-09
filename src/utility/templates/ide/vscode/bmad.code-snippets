@@ -1,0 +1,164 @@
+{
+  "BMAD Dev Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bdev",
+    "body": "@bmad/bmm/agents/dev",
+    "description": "Load BMAD Development Agent"
+  },
+  "BMAD PM Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bpm",
+    "body": "@bmad/bmm/agents/pm",
+    "description": "Load BMAD Product Manager Agent"
+  },
+  "BMAD Architect Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "barch",
+    "body": "@bmad/bmm/agents/architect",
+    "description": "Load BMAD Architect Agent"
+  },
+  "BMAD Scrum Master Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bsm",
+    "body": "@bmad/bmm/agents/sm",
+    "description": "Load BMAD Scrum Master Agent"
+  },
+  "BMAD TEA Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "btea",
+    "body": "@bmad/bmm/agents/tea",
+    "description": "Load BMAD Test Architect Agent"
+  },
+  "BMAD Analyst Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "banalyst",
+    "body": "@bmad/bmm/agents/analyst",
+    "description": "Load BMAD Analyst Agent"
+  },
+  "BMAD UX Designer Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bux",
+    "body": "@bmad/bmm/agents/ux-designer",
+    "description": "Load BMAD UX Designer Agent"
+  },
+  "BMAD Tech Writer Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bwriter",
+    "body": "@bmad/bmm/agents/tech-writer",
+    "description": "Load BMAD Technical Writer Agent"
+  },
+  "BMAD Master Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bmaster",
+    "body": "@bmad/core/agents/bmad-master",
+    "description": "Load BMAD Master Agent (Orchestrator)"
+  },
+  "BMAD Builder Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bbuilder",
+    "body": "@bmad/bmb/agents/bmad-builder",
+    "description": "Load BMAD Builder Agent"
+  },
+  "BMAD Game Designer Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bgamedesigner",
+    "body": "@bmad/bmgd/agents/game-designer",
+    "description": "Load BMAD Game Designer Agent"
+  },
+  "BMAD Game Developer Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bgamedev",
+    "body": "@bmad/bmgd/agents/game-dev",
+    "description": "Load BMAD Game Developer Agent"
+  },
+  "BMAD Game Architect Agent": {
+    "scope": "markdown,plaintext",
+    "prefix": "bgamearch",
+    "body": "@bmad/bmgd/agents/game-architect",
+    "description": "Load BMAD Game Architect Agent"
+  },
+  "BMAD Dev Story Workflow": {
+    "scope": "markdown,plaintext",
+    "prefix": "bstory",
+    "body": ["@bmad/bmm/agents/dev", "*dev-story"],
+    "description": "Load Dev Agent and run dev-story workflow"
+  },
+  "BMAD Create PRD": {
+    "scope": "markdown,plaintext",
+    "prefix": "bprd",
+    "body": ["@bmad/bmm/agents/pm", "*prd"],
+    "description": "Load PM Agent and create PRD"
+  },
+  "BMAD Architecture": {
+    "scope": "markdown,plaintext",
+    "prefix": "barchitecture",
+    "body": ["@bmad/bmm/agents/architect", "*architecture"],
+    "description": "Load Architect Agent and create architecture"
+  },
+  "BMAD Sprint Planning": {
+    "scope": "markdown,plaintext",
+    "prefix": "bsprint",
+    "body": ["@bmad/bmm/agents/sm", "*sprint-planning"],
+    "description": "Load SM Agent and run sprint planning"
+  },
+  "BMAD Workflow Init": {
+    "scope": "markdown,plaintext",
+    "prefix": "binit",
+    "body": "*workflow-init",
+    "description": "Initialize BMAD workflow for project"
+  },
+  "BMAD Story Ready": {
+    "scope": "markdown,plaintext",
+    "prefix": "bready",
+    "body": ["@bmad/bmm/agents/sm", "*story-ready"],
+    "description": "Load SM Agent and mark story as ready"
+  },
+  "BMAD Story Done": {
+    "scope": "markdown,plaintext",
+    "prefix": "bdone",
+    "body": ["@bmad/bmm/agents/sm", "*story-done"],
+    "description": "Load SM Agent and mark story as done"
+  },
+  "BMAD Code Review": {
+    "scope": "markdown,plaintext",
+    "prefix": "breview",
+    "body": ["@bmad/bmm/agents/dev", "*code-review"],
+    "description": "Load Dev Agent and run code review"
+  },
+  "BMAD Test Design": {
+    "scope": "markdown,plaintext",
+    "prefix": "btest",
+    "body": ["@bmad/bmm/agents/tea", "*test-design"],
+    "description": "Load TEA Agent and create test design"
+  },
+  "BMAD Party Mode": {
+    "scope": "markdown,plaintext",
+    "prefix": "bparty",
+    "body": ["@bmad/core/agents/bmad-master", "*party-mode"],
+    "description": "Load BMad Master and start party mode (multi-agent collaboration)"
+  },
+  "BMAD Brainstorm": {
+    "scope": "markdown,plaintext",
+    "prefix": "bbrainstorm",
+    "body": ["@bmad/cis/agents/brainstorming-coach", "*brainstorming"],
+    "description": "Load Brainstorming Coach from CIS module"
+  },
+  "BMAD Reference Core Module": {
+    "scope": "markdown,plaintext",
+    "prefix": "bcore",
+    "body": "@bmad/core",
+    "description": "Include all core agents and tasks"
+  },
+  "BMAD Reference BMM Module": {
+    "scope": "markdown,plaintext",
+    "prefix": "bbmm",
+    "body": "@bmad/bmm",
+    "description": "Include entire BMM module"
+  },
+  "BMAD Reference Index": {
+    "scope": "markdown,plaintext",
+    "prefix": "bindex",
+    "body": "@bmad/index",
+    "description": "Show index of all available agents and workflows"
+  }
+}

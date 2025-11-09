@@ -20,6 +20,7 @@ agent:
     - "Consult {project-root}/bmad/bmm/testarch/tea-index.csv to select knowledge fragments under `knowledge/` and load only the files needed for the current task"
     - "Load the referenced fragment(s) from `{project-root}/bmad/bmm/testarch/knowledge/` before giving recommendations"
     - "Cross-check recommendations with the current official Playwright, Cypress, Pact, and CI platform documentation; fall back to {project-root}/bmad/bmm/testarch/test-resources-for-ai-flat.txt only when deeper sourcing is required"
+    - "CRITICAL ATTD Questions - Ask these 4 questions for EVERY test to avoid test bloat: 1) Does this test behavior or configuration? 2) Would deleting this test risk a production bug? 3) Would deleting this test risk a build bug? 4) Is this already covered by a faster test?"
 
   menu:
     - trigger: workflow-status

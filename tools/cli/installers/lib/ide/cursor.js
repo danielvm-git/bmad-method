@@ -122,12 +122,17 @@ class CursorSetup extends BaseIdeSetup {
     // Create BMAD index file (but NOT .cursorrules - user manages that)
     await this.createBMADIndex(bmadRulesDir, agents, tasks, tools, workflows, modules);
 
+    // Copy IDE-specific templates (snippets and quick reference)
+    await this.copyIdeTemplates(projectDir, bmadDir);
+
     console.log(chalk.green(`✓ ${this.name} configured:`));
     console.log(chalk.dim(`  - ${agentCount} agents installed`));
     console.log(chalk.dim(`  - ${taskCount} tasks installed`));
     console.log(chalk.dim(`  - ${toolCount} tools installed`));
     console.log(chalk.dim(`  - ${workflowCount} workflows installed`));
     console.log(chalk.dim(`  - Rules directory: ${path.relative(projectDir, bmadRulesDir)}`));
+    console.log(chalk.dim(`  - VS Code snippets installed`));
+    console.log(chalk.dim(`  - Cursor quick reference installed`));
 
     return {
       success: true,
@@ -136,6 +141,71 @@ class CursorSetup extends BaseIdeSetup {
       tools: toolCount,
       workflows: workflowCount,
     };
+  }
+
+  /**
+   * Copy IDE-specific templates (snippets and quick reference)
+   * @param {string} projectDir - Project directory (where .cursor/ .vscode/ will be created)
+   * @param {string} bmadDir - BMAD installation directory (projectDir/bmad)
+   */
+  async copyIdeTemplates(projectDir, bmadDir) {
+    const fs = require('fs-extra');
+
+    // Determine the source directory for templates
+    // During installation, we need to find the BMAD source (this repository)
+    // The installer is running from the BMAD repo, so we can use __dirname
+    let templatesDir;
+
+    // Option 1: Relative to this module (during development or npx run)
+    // __dirname is: bmad-method/tools/cli/installers/lib/ide
+    // We need: bmad-method/src/utility/templates/ide
+    const moduleRelativeDir = path.resolve(__dirname, '..', '..', '..', '..', '..', 'src', 'utility', 'templates', 'ide');
+
+    // Option 2: If installed as npm package, look in node_modules
+    let npmPackageDir = null;
+    try {
+      // eslint-disable-next-line n/no-missing-require
+      npmPackageDir = path.join(require.resolve('bmad-method/package.json'), '..', 'src', 'utility', 'templates', 'ide');
+    } catch {
+      // Package not installed, ignore
+    }
+
+    if (await fs.pathExists(moduleRelativeDir)) {
+      templatesDir = moduleRelativeDir;
+    } else if (npmPackageDir && (await fs.pathExists(npmPackageDir))) {
+      templatesDir = npmPackageDir;
+    } else {
+      console.log(chalk.yellow('  ⚠ IDE templates not found, skipping snippets installation'));
+      return;
+    }
+
+    // Copy VS Code snippets
+    const vscodeSnippetsSource = path.join(templatesDir, 'vscode', 'bmad.code-snippets');
+    if (await fs.pathExists(vscodeSnippetsSource)) {
+      const vscodeDir = path.join(projectDir, '.vscode');
+      await this.ensureDir(vscodeDir);
+
+      const vscodeSnippetsTarget = path.join(vscodeDir, 'bmad.code-snippets');
+
+      // Only copy if it doesn't exist (don't overwrite user customizations)
+      if (!(await fs.pathExists(vscodeSnippetsTarget))) {
+        await fs.copy(vscodeSnippetsSource, vscodeSnippetsTarget);
+      }
+    }
+
+    // Copy Cursor quick reference
+    const cursorQuickRefSource = path.join(templatesDir, 'cursor', 'bmad.md');
+    if (await fs.pathExists(cursorQuickRefSource)) {
+      const cursorRulesDir = path.join(projectDir, this.configDir, this.rulesDir);
+      await this.ensureDir(cursorRulesDir);
+
+      const cursorQuickRefTarget = path.join(cursorRulesDir, 'bmad.md');
+
+      // Only copy if it doesn't exist (don't overwrite user customizations)
+      if (!(await fs.pathExists(cursorQuickRefTarget))) {
+        await fs.copy(cursorQuickRefSource, cursorQuickRefTarget);
+      }
+    }
   }
 
   /**

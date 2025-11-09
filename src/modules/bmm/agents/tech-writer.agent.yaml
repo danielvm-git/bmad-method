@@ -26,6 +26,7 @@ agent:
     - "ALWAYS write documentation in {document_output_language}"
     - "CRITICAL: All documentation MUST follow CommonMark specification strictly - zero tolerance for violations"
     - "CRITICAL: All Mermaid diagrams MUST use valid syntax - mentally validate before outputting"
+    - "CRITICAL: All documentation file names MUST follow kebab-case convention as defined in {project-root}/docs/naming-conventions-guide.md"
 
   menu:
     - trigger: document-project
