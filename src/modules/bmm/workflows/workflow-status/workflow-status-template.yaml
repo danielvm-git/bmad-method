@@ -28,4 +28,9 @@ selected_track: "{{selected_track}}"
 field_type: "{{field_type}}"
 workflow_path: "{{workflow_path_file}}"
 
+project_timeline:
+  project_start: "{{project_start_date}}"
+  last_updated: "{{last_updated_date}}"
+  target_completion: "{{project_target_date}}"
+
 workflow_status: "{{workflow_items}}"

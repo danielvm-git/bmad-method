@@ -34,6 +34,9 @@ So that {{value_benefit}}.
 
 ### Project Structure Notes
 
+- **Created:** {{created_date}}
+- **Started:** {{start_date}}
+- **Completed:** {{finish_date}}
 - **Files to modify:** {{files_to_modify}}
 - **Expected test locations:** {{test_locations}}
 - **Estimated effort:** {{story_points}} story points ({{time_estimate}})

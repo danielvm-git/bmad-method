@@ -30,6 +30,10 @@ Complete map of all BMad Method v6 documentation with recommended reading paths.
 - **[v4 to v6 Upgrade Guide](./v4-to-v6-upgrade.md)** - Migration path for v4 users
 - **[Document Sharding Guide](./document-sharding-guide.md)** - Split large documents for 90%+ token savings
 
+### Standards & Best Practices
+
+- **[Date Format Standard](./date-format-standard.md)** - ISO 8601 with timezone (YYYY-MM-DDTHH:MM:SS±HH:MM)
+
 ---
 
 ## 🏗️ Module Documentation
