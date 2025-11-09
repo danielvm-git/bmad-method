@@ -81,6 +81,12 @@ npx bmad-method@alpha install
 
 ## 🎯 Key Concepts
 
+### Standards & Best Practices
+
+**Date Format:** All dates use ISO 8601 with timezone (`YYYY-MM-DDTHH:MM:SS±HH:MM`)
+
+👉 **[Date Format Standard](../../docs/date-format-standard.md)** - Complete ISO 8601 reference and implementation
+
 ### Scale-Adaptive Design
 
 BMM automatically adjusts to project complexity (Levels 0-4):
