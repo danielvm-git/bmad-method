@@ -23,8 +23,8 @@
         <mandate>Load config_source (REQUIRED for all modules)</mandate>
         <phase n="1">Load external config from config_source path</phase>
         <phase n="2">Resolve all {config_source}: references with values from config</phase>
-        <phase n="3">Resolve system variables (date:system-generated) and paths ({project-root}, {installed_path})</phase>
-        <phase n="3a">Initialize time tracking: Record workflow start_date in ISO 8601 format with timezone</phase>
+        <phase n="3">Resolve system variables and path references</phase>
+        <phase n="3a">Initialize time tracking: Record workflow_start_date in ISO 8601 format with timezone</phase>
         <phase n="4">Ask user for input of any variables that are still unknown</phase>
         <date-format-standard>
           <iso8601-utc>Format: YYYY-MM-DDTHH:MM:SSZ (e.g., 2025-11-09T17:30:45Z)</iso8601-utc>
@@ -33,18 +33,24 @@
           <variable>{date:iso8601-local} → Current time with local timezone offset</variable>
           <variable>{date:system-generated} → Legacy alias for {date:iso8601-local}</variable>
         </date-format-standard>
+        <path-variables>
+          <variable>{project_root} → Root directory of the BMAD project</variable>
+          <variable>{installed_path} → Path where BMAD is installed</variable>
+          <variable>{workflow_base_path} → Base directory containing workflows (e.g., module workflows directory)</variable>
+          <variable>{workflow_name} → Name of the currently executing workflow</variable>
+        </path-variables>
       </substep>
 
       <substep n="1b" title="Load Required Components">
         <mandate>Instructions: Read COMPLETE file from path OR embedded list (REQUIRED)</mandate>
-        <check>If template path → Read COMPLETE template file</check>
-        <check>If validation path → Note path for later loading when needed</check>
-        <check>If template: false → Mark as action-workflow (else template-workflow)</check>
+        <action if="template path exists">Read COMPLETE template file</action>
+        <action if="validation path exists">Note path for later loading when needed</action>
+        <action if="template: false">Mark as action-workflow (else template-workflow)</action>
         <note>Data files (csv, json) → Store paths only, load on-demand when instructions reference them</note>
       </substep>
 
       <substep n="1c" title="Initialize Output" if="template-workflow">
-        <action>Resolve default_output_file path with all variables and {{date}}</action>
+        <action>Resolve default_output_file path with all variables and {date:iso8601-local}</action>
         <action>Create output directory if doesn't exist</action>
         <action>If template-workflow → Write template to output file with placeholders</action>
         <action>If action-workflow → Skip file creation</action>
@@ -55,18 +61,19 @@
       <iterate>For each step in instructions:</iterate>
 
       <substep n="2a" title="Handle Step Attributes">
-        <check>If optional="true" and NOT #yolo → Ask user to include</check>
-        <check>If if="condition" → Evaluate condition</check>
-        <check>If for-each="item" → Repeat step for each item</check>
-        <check>If repeat="n" → Repeat step n times</check>
+        <action if="optional='true' and NOT #yolo">Ask user to include</action>
+        <action if="if='condition' exists">Evaluate condition</action>
+        <action if="for-each='item' exists">Repeat step for each item</action>
+        <action if="repeat='n' exists">Repeat step n times</action>
       </substep>
 
       <substep n="2b" title="Execute Step Content">
         <action>Process step instructions (markdown or XML tags)</action>
-        <action>Replace {{variables}} with values (ask user if unknown)</action>
+        <action>Replace {variables} with values (ask user if unknown)</action>
+        <note>Variable format: {variable_name} for single-brace or {{variable_name}} for double-brace in templates</note>
         <execute-tags>
-          <tag>action xml tag → Perform the action</tag>
-          <tag>check if="condition" xml tag → Conditional block wrapping actions (requires closing &lt;/check&gt;)</tag>
+          <tag>action xml tag → Perform the action (can have inline if="condition")</tag>
+          <tag>check if="condition"&gt;...&lt;/check&gt; xml tag → Conditional block wrapping multiple items (MUST have closing tag)</tag>
           <tag>ask xml tag → Prompt user and WAIT for response</tag>
           <tag>invoke-workflow xml tag → Execute another workflow with given inputs</tag>
           <tag>invoke-task xml tag → Execute specified task</tag>
@@ -85,29 +92,34 @@
       </substep>
 
       <substep n="2d" title="Step Completion">
-        <check>If no special tags and NOT #yolo:</check>
-        <ask>Continue to next step? (y/n/edit)</ask>
+        <check if="no special tags and NOT #yolo">
+          <ask>Continue to next step? (y/n/edit)</ask>
+        </check>
       </substep>
     </step>
 
     <step n="3" title="Completion">
       <substep n="3a" title="Finalize Time Tracking">
-        <action>Record workflow finish_date in ISO 8601 format with timezone</action>
-        <action>Calculate time_spent: difference between finish_date and start_date</action>
-        <action>Format time_spent as human-readable (e.g., "2 hours 15 minutes" or "45 minutes")</action>
+        <action>Record workflow_finish_date in ISO 8601 format with timezone</action>
+        <action>Calculate workflow_time_spent: difference between workflow_finish_date and workflow_start_date</action>
+        <action>Format workflow_time_spent as human-readable (e.g., "2 hours 15 minutes" or "45 minutes")</action>
         <display-format>
           <time-tracking-summary>
             ⏱️  Workflow Time Tracking:
-            Started:  {start_date}  (ISO 8601)
-            Finished: {finish_date} (ISO 8601)
-            Duration: {time_spent}  (human-readable)
+            Started:  {workflow_start_date}  (ISO 8601)
+            Finished: {workflow_finish_date} (ISO 8601)
+            Duration: {workflow_time_spent}  (human-readable)
           </time-tracking-summary>
         </display-format>
       </substep>
       <substep n="3b" title="Validation and Confirmation">
-        <check>If checklist exists → Run validation</check>
-        <check>If template: false → Confirm actions completed</check>
-        <check>Else → Confirm document saved to output path</check>
+        <action if="checklist exists">Run validation</action>
+        <check if="template: false">
+          <action>Confirm actions completed</action>
+        </check>
+        <check if="template: true">
+          <action>Confirm document saved to output path</action>
+        </check>
         <action>Report workflow completion with time tracking summary</action>
       </substep>
       <substep n="3c" title="Offer Commit Suggestion" optional="true">
@@ -116,8 +128,8 @@
         <check if="files were modified">
           <ask>Files were modified during this workflow. Run suggest-commit workflow to generate Conventional Commits message? [y/n]</ask>
           <check if="user responds yes">
-            <invoke-workflow path="{project-root}/bmad/bmm/workflows/git/suggest-commit/workflow.yaml">
-              <variable name="workflow_name">{current_workflow_name}</variable>
+            <invoke-workflow path="{workflow_base_path}/git/suggest-commit/workflow.yaml">
+              <variable name="workflow_name">{workflow_name}</variable>
               <variable name="start_date">{workflow_start_date}</variable>
               <variable name="finish_date">{workflow_finish_date}</variable>
               <variable name="time_spent">{workflow_time_spent}</variable>
@@ -179,10 +191,16 @@
     </pattern>
 
     <pattern type="nested-conditions">
-      <use-case>Else/alternative branches</use-case>
+      <use-case>Else/alternative branches (mutually exclusive conditions)</use-case>
       <syntax>&lt;check if="condition A"&gt;...&lt;/check&gt;
-&lt;check if="else"&gt;...&lt;/check&gt;</syntax>
-      <rationale>Clear branching logic with explicit blocks</rationale>
+&lt;check if="NOT condition A"&gt;...&lt;/check&gt;</syntax>
+      <example>&lt;check if="template: false"&gt;
+  &lt;action&gt;Confirm actions completed&lt;/action&gt;
+&lt;/check&gt;
+&lt;check if="template: true"&gt;
+  &lt;action&gt;Confirm document saved&lt;/action&gt;
+&lt;/check&gt;</example>
+      <rationale>Clear branching logic with explicit conditions - avoid ambiguous "else"</rationale>
     </pattern>
   </conditional-execution-patterns>
 
