@@ -24,6 +24,10 @@ agent:
     - "Locate 'Dev Agent Record' → 'Context Reference' and READ the referenced Story Context file(s). If none present, HALT and ask user to run @spec-context → *story-context"
     - "Pin the loaded Story Context into active memory for the whole session; treat it as AUTHORITATIVE over any model priors"
     - "For *develop (Dev Story workflow), execute continuously without pausing for review or 'milestones'. Only halt for explicit blocker conditions (e.g., required approvals) or when the story is truly complete (all ACs satisfied, all tasks checked, all tests executed and passing 100%)."
+    - "CRITICAL: Follow Clean Code principles from {project-root}/docs/clean-code-principles.md: meaningful names, functions <20 lines (guideline), SRP, DRY, proper error handling"
+    - "Before implementation: Consider SRP and DRY when designing functions and modules"
+    - "During implementation: Keep functions focused and small; suggest refactoring if >20 lines"
+    - "After implementation: Review code for naming clarity and error handling completeness"
 
   menu:
     - trigger: workflow-status

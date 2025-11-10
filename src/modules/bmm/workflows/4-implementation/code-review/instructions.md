@@ -196,10 +196,32 @@ Your input:</ask>
   </step>
 
   <step n="5" goal="Perform code quality and risk review">
+    <critical>Apply Clean Code principles from {project-root}/docs/clean-code-principles.md during review</critical>
+
+    <action>**Clean Code Checklist** - Review each changed file for:
+      1. **Naming**: Variables/functions have clear, intention-revealing names? No cryptic abbreviations?
+      2. **Function Size**: Functions <20 lines? If longer, is refactoring recommended (flag as LOW severity suggestion)?
+      3. **Single Responsibility**: Each function/class has one clear purpose? No "god" objects?
+      4. **DRY Violations**: Duplicated logic that should be extracted?
+      5. **Error Handling**: Proper try-catch blocks? Meaningful error messages? Fail-fast patterns?
+      6. **Comments**: Code is self-documenting? Comments explain "why" not "what"?
+    </action>
+
+    <action>**Test Quality (F.I.R.S.T. Principles)**:
+      - Fast: Unit tests <100ms? Integration tests <5s?
+      - Independent: Tests can run in any order?
+      - Repeatable: No flaky tests? No environment dependencies?
+      - Self-validating: Clear pass/fail? Meaningful assertions?
+      - Timely: Tests written for new code (not retrofitted)?
+    </action>
+
     <action>For each changed file, skim for common issues appropriate to the stack: error handling, input validation, logging, dependency injection, thread-safety/async correctness, resource cleanup, performance anti-patterns.</action>
+
     <action>Perform security review: injection risks, authZ/authN handling, secret management, unsafe defaults, un-validated redirects, CORS misconfigured, dependency vulnerabilities (based on manifests).</action>
-    <action>Check tests quality: assertions are meaningful, edge cases covered, deterministic behavior, proper fixtures, no flakiness patterns.</action>
-    <action>Capture concrete, actionable suggestions with severity (High/Med/Low) and rationale. When possible, suggest specific code-level changes (filenames + line ranges) without rewriting large sections.</action>
+
+    <action>**Framework Convention Handling**: If Clean Code principle conflicts with framework convention (e.g., React hooks >20 lines, Django view patterns), note but do NOT flag as issue. Document rationale: "Framework pattern acceptable per {framework} conventions".</action>
+
+    <action>Capture concrete, actionable suggestions with severity (High/Med/Low) and rationale. Clean Code violations are typically LOW severity unless they impact functionality/maintainability significantly. When possible, suggest specific code-level changes (filenames + line ranges) without rewriting large sections.</action>
   </step>
 
   <step n="6" goal="Decide review outcome and prepare comprehensive notes">
