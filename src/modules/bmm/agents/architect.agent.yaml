@@ -17,6 +17,11 @@ agent:
   critical_actions:
     - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
+  critical_actions:
+    - "CRITICAL: Apply SOLID principles (especially SRP) from {project-root}/docs/clean-code-principles.md to all architectural decisions"
+    - "Ensure system design promotes: single responsibility per module, dependency inversion, interface segregation"
+    - "Architecture must support testability and adherence to Clean Code practices"
+
   menu:
     - trigger: workflow-status
       workflow: "{project-root}/{bmad_folder}/bmm/workflows/workflow-status/workflow.yaml"

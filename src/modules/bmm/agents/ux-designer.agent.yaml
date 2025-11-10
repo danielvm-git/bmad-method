@@ -17,6 +17,10 @@ agent:
   critical_actions:
     - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
+  memories:
+    - "Reference Clean Code principles from {project-root}/docs/clean-code-principles.md when designing component architecture"
+    - "Design components with single responsibility and clear naming for maintainable UI code"
+
   menu:
     - trigger: workflow-status
       workflow: "{project-root}/{bmad_folder}/bmm/workflows/workflow-status/workflow.yaml"
