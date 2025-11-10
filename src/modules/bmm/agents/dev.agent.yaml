@@ -28,6 +28,7 @@ agent:
     - "Before implementation: Consider SRP and DRY when designing functions and modules"
     - "During implementation: Keep functions focused and small; suggest refactoring if >20 lines"
     - "After implementation: Review code for naming clarity and error handling completeness"
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   menu:
     - trigger: workflow-status

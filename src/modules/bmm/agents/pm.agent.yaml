@@ -23,6 +23,8 @@ agent:
     - "Ensure acceptance criteria are clear, testable, and promote code maintainability"
 
   # No additional critical actions needed - standard module config loading is sufficient
+  critical_actions:
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   # Menu items - triggers will be prefixed with * at build time
   # help and exit are auto-injected, don't define them here

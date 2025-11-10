@@ -23,6 +23,7 @@ agent:
 
   critical_actions:
     - "When running *create-story, run non-interactively: use architecture, PRD, Tech Spec, and epics to generate a complete draft without elicitation."
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   menu:
     - trigger: workflow-status

@@ -254,8 +254,26 @@ Story is marked Ready for Review in file, but sprint-status.yaml may be out of s
       - Ensure deployment readiness if applicable
       - Run `code-review` workflow for peer review
       - Check sprint-status.yaml to see project progress
+      - Consider running `suggest-commit` workflow to generate commit message
     </action>
     <action>Remain flexible - allow user to choose their own path or ask for other assistance</action>
+  </step>
+
+  <step n="[LAST]" goal="Suggest commit message" optional="true">
+    <action>Inform user that files were modified during story implementation</action>
+    <ask>Run suggest-commit workflow to generate Conventional Commits message and track time? [y/n]</ask>
+    <check if="user responds yes">
+      <invoke-workflow path="{project-root}/bmad/bmm/workflows/git/suggest-commit/workflow.yaml">
+        <variable name="workflow_name">dev-story</variable>
+        <variable name="start_date">{date:iso8601-local}</variable>
+        <variable name="finish_date">{date:iso8601-local}</variable>
+        <variable name="time_spent">calculated_from_workflow</variable>
+      </invoke-workflow>
+    </check>
+    <check if="user responds no">
+      <action>Remind user they can run suggest-commit later via: @bmad/bmm/agents/dev → *suggest-commit</action>
+      <action>Or reference the Conventional Commits guide: {project-root}/docs/conventional-commits-guide.md</action>
+    </check>
   </step>
 
 </workflow>

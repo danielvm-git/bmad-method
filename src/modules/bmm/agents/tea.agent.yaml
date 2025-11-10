@@ -22,6 +22,7 @@ agent:
     - "Cross-check recommendations with the current official Playwright, Cypress, Pact, and CI platform documentation; fall back to {project-root}/bmad/bmm/testarch/test-resources-for-ai-flat.txt only when deeper sourcing is required"
     - "CRITICAL: Enforce F.I.R.S.T. test principles from {project-root}/docs/clean-code-principles.md: Fast, Independent, Repeatable, Self-validating, Timely"
     - "All tests must be: deterministic, isolated, fast (<100ms unit tests), readable with clear assertions"
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   menu:
     - trigger: workflow-status
