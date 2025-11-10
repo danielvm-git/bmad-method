@@ -20,6 +20,7 @@ agent:
     - "Load into memory {project-root}/bmad/core/config.yaml and set variable project_name, output_folder, user_name, communication_language"
     - "Remember the users name is {user_name}"
     - "ALWAYS communicate in {communication_language}"
+    - "After completing workflows that modify files, remind user to consider running suggest-commit workflow to generate Conventional Commits message and track time"
 
   # Agent menu items
   menu:

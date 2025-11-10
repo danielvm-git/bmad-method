@@ -110,6 +110,21 @@
         <check>Else → Confirm document saved to output path</check>
         <action>Report workflow completion with time tracking summary</action>
       </substep>
+      <substep n="3c" title="Offer Commit Suggestion" optional="true">
+        <note>This step helps users create Conventional Commits messages after modifying files</note>
+        <action>Check if files were modified during workflow execution (via git status or file tracking)</action>
+        <check if="files were modified">
+          <ask>Files were modified during this workflow. Run suggest-commit workflow to generate Conventional Commits message? [y/n]</ask>
+          <check if="user responds yes">
+            <invoke-workflow path="{project-root}/bmad/bmm/workflows/git/suggest-commit/workflow.yaml">
+              <variable name="workflow_name">{current_workflow_name}</variable>
+              <variable name="start_date">{workflow_start_date}</variable>
+              <variable name="finish_date">{workflow_finish_date}</variable>
+              <variable name="time_spent">{workflow_time_spent}</variable>
+            </invoke-workflow>
+          </check>
+        </check>
+      </substep>
     </step>
   </flow>
 
