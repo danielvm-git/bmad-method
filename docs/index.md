@@ -33,6 +33,7 @@ Complete map of all BMad Method v6 documentation with recommended reading paths.
 ### Standards & Best Practices
 
 - **[Date Format Standard](./date-format-standard.md)** - ISO 8601 with timezone (YYYY-MM-DDTHH:MM:SS±HH:MM)
+- **[Clean Code Principles](./clean-code-principles.md)** - Industry best practices for maintainable code
 
 ### Project Management & Methodology
 
