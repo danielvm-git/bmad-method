@@ -1,7 +1,9 @@
 # {{project_name}} - Epic Breakdown
 
-**Date:** {{date}}
+**Created:** {{date}}
 **Project Level:** {{project_level}}
+**Start Date:** {{start_date}}
+**Target Completion:** {{target_date}}
 
 ---
 

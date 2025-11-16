@@ -32,6 +32,10 @@ Complete map of all BMad Method v6 documentation with recommended reading paths.
 - **[Web Bundles](./USING_WEB_BUNDLES.md)** - Use BMAD agents in Claude Projects, ChatGPT, or Gemini without installation
 - **[Bundle Distribution Setup](./BUNDLE_DISTRIBUTION_SETUP.md)** - Maintainer guide for bundle auto-publishing
 
+### Standards & Best Practices
+
+- **[Date Format Standard](./date-format-standard.md)** - ISO 8601 with timezone (YYYY-MM-DDTHH:MM:SS±HH:MM)
+
 ---
 
 ## 🏗️ Module Documentation

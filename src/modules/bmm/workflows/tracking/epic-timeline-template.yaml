@@ -1,0 +1,69 @@
+# Epic Timeline Tracking Template
+# Tracks epic-level timeline with ISO 8601 dates
+# Generated: {{date}}
+
+epic_info:
+  id: "{{epic_id}}"
+  title: "{{epic_title}}"
+  slug: "{{epic_slug}}"
+  project: "{{project_name}}"
+  priority: "{{epic_priority}}"              # high, medium, low
+
+timeline:
+  created: "{{epic_created_date}}"            # ISO 8601: 2025-11-09T10:00:00-03:00
+  context_start: "{{context_start_date}}"     # ISO 8601: when epic-tech-context started
+  context_finish: "{{context_finish_date}}"   # ISO 8601: when epic-tech-context completed
+  dev_start: "{{dev_start_date}}"             # ISO 8601: first story started
+  dev_finish: "{{dev_finish_date}}"           # ISO 8601: last story completed
+  target_completion: "{{target_date}}"        # ISO 8601: planned completion
+  actual_completion: null                     # ISO 8601: updated when all stories done
+  
+status: "{{epic_status}}"                     # backlog, contexted, in-progress, done
+
+scope:
+  goal: "{{epic_goal}}"
+  total_stories: {{total_stories}}
+  completed_stories: {{completed_stories}}
+  total_story_points: {{total_story_points}}
+  completed_story_points: {{completed_story_points}}
+
+dependencies:
+  blocks: []                                  # Epic IDs that this epic blocks
+  blocked_by: []                              # Epic IDs blocking this epic
+  related: []                                 # Related epic IDs
+
+stories:
+  - id: "{{story_id_1}}"
+    title: "{{story_title_1}}"
+    status: "{{story_status_1}}"              # backlog, drafted, ready-for-dev, in-progress, review, done
+    points: {{story_points_1}}
+    start: "{{story_1_start}}"                # ISO 8601
+    finish: "{{story_1_finish}}"              # ISO 8601
+  - id: "{{story_id_2}}"
+    title: "{{story_title_2}}"
+    status: "{{story_status_2}}"
+    points: {{story_points_2}}
+    start: "{{story_2_start}}"
+    finish: "{{story_2_finish}}"
+
+artifacts:
+  epic_tech_context: "{{epic_context_path}}"
+  story_files: "{{stories_directory}}"
+
+metrics:
+  velocity:
+    planned_duration_days: {{planned_duration}}
+    actual_duration_days: {{actual_duration}}
+    average_story_duration_hours: {{avg_story_duration}}
+  quality:
+    bugs_found: {{bugs_found}}
+    rework_stories: {{rework_count}}
+
+retrospective:
+  completed: {{retro_completed}}              # true, false
+  date: "{{retro_date}}"                      # ISO 8601
+  path: "{{retro_path}}"
+
+notes: |
+  {{epic_notes}}
+

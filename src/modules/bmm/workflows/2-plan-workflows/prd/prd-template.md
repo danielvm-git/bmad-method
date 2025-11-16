@@ -3,6 +3,8 @@
 **Author:** {{user_name}}
 **Date:** {{date}}
 **Version:** 1.0
+**Start Date:** {{start_date}}
+**Target Completion:** {{target_date}}
 
 ---
 
